@@ -1,0 +1,51 @@
+
+steps to create django virtualenv --cmd:
+
+1. pip install django
+2. pip install virtualenvwrapper-win
+3. mkvirtualenv djangoenv
+4. workon djangoenv
+5. django-admin startproject restfulapiCRUD
+6. cd restfulapiCRUD
+
+
+
+setting up django code
+1. run python manage.py startapp airlineServiceAPI
+2. open settings.py inside INSTALLED_APPS add your app name(this case airlineServiceAPI) 
+	and rest_framework which u can install before use by running (pip install djangorestframework)
+	like : 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'airlineServiceAPI',
+    'rest_framework'
+]
+
+3. add database- since i am using postgreSQL, go to database in settings.py and update database like
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'restfulapiDB',
+        'USER': 'postgres',
+        'PASSWORD': 'gslab',
+        'HOST': 'localhost'
+    }
+}
+
+P.S. make sure u have created this db('restfulapiDB') in postgres before hand
+
+4. now run 'python manage.py migrate' command to import databse
+
+5. now go to model.py in ur appapi and add ur required models after that run these 2 commands
+ to reflect those table models in db
+	python manage.py makemigrations airlineServiceAPI
+	python manage.py migrate
+
+6. create ur application refer - https://www.youtube.com/watch?v=1k0fRG098cU&t=1s&ab_channel=CodAffection
+7. run ur application using 'python manage.py runserver'
+
